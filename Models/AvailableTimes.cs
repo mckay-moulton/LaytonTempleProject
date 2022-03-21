@@ -7,6 +7,6 @@ namespace LaytonTemple.Models
 {
     public class AvailableTimes
     {
-        public DateTime TimeSlot { get; set; }
+        public String TimeSlot { get; set; }
     }
 }

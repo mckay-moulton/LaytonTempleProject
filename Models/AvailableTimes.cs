@@ -7,5 +7,6 @@ namespace LaytonTemple.Models
     {
         [Key]
         public String TimeSlot { get; set; }
+        public int GroupID { get; set; }
     }
 }

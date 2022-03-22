@@ -19,6 +19,6 @@ namespace LaytonTemple.Models
         public string email { get; set; }
         [Required (ErrorMessage ="Please enter a valid phone number")]
         public string phone { get; set; }
-        public AvailableTimes timeslot { get; set; }
+        public string timeslot { get; set; }
     }
 }

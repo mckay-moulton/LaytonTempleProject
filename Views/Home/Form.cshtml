@@ -6,10 +6,12 @@
 @model LaytonTemple.Models.ViewModels.GroupView
 
 <p>Thank you for choosing a time!</p>
-<p>Your scheduled time is @Model.timeslot</p>
+<p>Your scheduled time is @Model.timeslot.TimeSlot</p>
 
-<form method="post" asp-controller="GroupInfo" asp-action="Form">
+<form method="post" asp-controller="Home" asp-action="Form">
     <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input class="form-control" type="hidden" value="@Model.timeslot.TimeSlot" asp-for="groupinfo.timeslot"/>
 
     <h4>Group Information</h4>
     <div class="form-group">
@@ -28,11 +30,7 @@
         <label asp-for="groupinfo.phone">Phone Number: </label>
         <input asp-for="groupinfo.phone" class="form-control" />
     </div>
+            
+    <button type="submit" class="btn btn-success btn-sm-float-end">Confirm Appointment</button>
+     
 </form>
-
-
-    <form method="post">
-        <span class="card-text">
-            <button type="submit" class="btn btn-success btn-sm-float-end" asp-action="Index">Confirm Appointment</button>
-        </span>
-    </form>

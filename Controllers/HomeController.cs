@@ -12,13 +12,13 @@ namespace LaytonTemple.Controllers
 {
     public class HomeController : Controller
     {
+        private ApptContext daContext { get; set; }
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApptContext group)
         {
-            _logger = logger;
-        }
-
+            daContext = group;
+        } 
         public IActionResult Index()
         {
             return View();
@@ -29,15 +29,20 @@ namespace LaytonTemple.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Sign_Up(AvailableTimes temp)
+        {
+            var x = new GroupView { timeslot = temp};
+            return View("Form", x);
+        }
+
 
         [HttpPost]
-        public IActionResult Sign_Up(AvailableTimes response)
+        public IActionResult Form(GroupView group)
         {
-            var x = new GroupView
-            {
-                timeslot = response,
-            };
-            return View("Form", x);
+            daContext.Update(group);
+            daContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

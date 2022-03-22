@@ -10,7 +10,8 @@ namespace LaytonTemple.Migrations
                 name: "AvailableTimes",
                 columns: table => new
                 {
-                    TimeSlot = table.Column<string>(nullable: false)
+                    TimeSlot = table.Column<string>(nullable: false),
+                    GroupID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -21,21 +22,17 @@ namespace LaytonTemple.Migrations
                 name: "GroupInfo",
                 columns: table => new
                 {
+                    GroupID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     groupName = table.Column<string>(nullable: false),
                     groupSize = table.Column<int>(nullable: false),
                     email = table.Column<string>(nullable: false),
                     phone = table.Column<string>(nullable: false),
-                    TimeSlot = table.Column<string>(nullable: true)
+                    timeslot = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupInfo", x => x.groupName);
-                    table.ForeignKey(
-                        name: "FK_GroupInfo_AvailableTimes_TimeSlot",
-                        column: x => x.TimeSlot,
-                        principalTable: "AvailableTimes",
-                        principalColumn: "TimeSlot",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_GroupInfo", x => x.GroupID);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,7 +41,7 @@ namespace LaytonTemple.Migrations
                 {
                     GroupID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    groupinfogroupName = table.Column<string>(nullable: true),
+                    groupinfoGroupID = table.Column<int>(nullable: true),
                     TimeSlot = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -57,17 +54,12 @@ namespace LaytonTemple.Migrations
                         principalColumn: "TimeSlot",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Groups_GroupInfo_groupinfogroupName",
-                        column: x => x.groupinfogroupName,
+                        name: "FK_Groups_GroupInfo_groupinfoGroupID",
+                        column: x => x.groupinfoGroupID,
                         principalTable: "GroupInfo",
-                        principalColumn: "groupName",
+                        principalColumn: "GroupID",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GroupInfo_TimeSlot",
-                table: "GroupInfo",
-                column: "TimeSlot");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Groups_TimeSlot",
@@ -75,9 +67,9 @@ namespace LaytonTemple.Migrations
                 column: "TimeSlot");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Groups_groupinfogroupName",
+                name: "IX_Groups_groupinfoGroupID",
                 table: "Groups",
-                column: "groupinfogroupName");
+                column: "groupinfoGroupID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -86,10 +78,10 @@ namespace LaytonTemple.Migrations
                 name: "Groups");
 
             migrationBuilder.DropTable(
-                name: "GroupInfo");
+                name: "AvailableTimes");
 
             migrationBuilder.DropTable(
-                name: "AvailableTimes");
+                name: "GroupInfo");
         }
     }
 }

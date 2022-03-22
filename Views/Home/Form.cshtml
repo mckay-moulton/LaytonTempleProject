@@ -11,6 +11,7 @@
 <form method="post" asp-controller="Home" asp-action="Form">
     <div asp-validation-summary="All" class="text-danger"></div>
 
+    @* Form for gathering Group Information *@
     <input class="form-control" type="hidden" value="@Model.timeslot.TimeSlot" asp-for="groupinfo.timeslot"/>
 
     <h4>Group Information</h4>

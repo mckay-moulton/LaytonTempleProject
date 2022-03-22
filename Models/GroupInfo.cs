@@ -8,6 +8,7 @@ namespace LaytonTemple.Models
 {
     public class GroupInfo
     {
+        //Create database for storing group information
         [Key]
         [Required]
         public int GroupID { get; set; }

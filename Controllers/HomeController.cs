@@ -1,4 +1,5 @@
 ﻿using LaytonTemple.Models;
+using LaytonTemple.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,7 +33,11 @@ namespace LaytonTemple.Controllers
         [HttpPost]
         public IActionResult Sign_Up(AvailableTimes response)
         {
-            return View("Form", response);
+            var x = new GroupView
+            {
+                timeslot = response,
+            };
+            return View("Form", x);
         }
 
     }

@@ -3,7 +3,36 @@
     ViewData["Title"] = "Form";
 }
 
-@model LaytonTemple.Models.AvailableTimes
+@model LaytonTemple.Models.ViewModels.GroupView
 
 <p>Thank you for choosing a time!</p>
-<p>Your scheduled time is @Model.TimeSlot</p>
+<p>Your scheduled time is @Model.timeslot</p>
+
+<form method="post" asp-controller="GroupInfo" asp-action="Form">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <h4>Group Information</h4>
+    <div class="form-group">
+        <label asp-for="groupinfo.groupName">Name: </label>
+        <input asp-for="groupinfo.groupName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.groupSize">Group Size: </label>
+        <input asp-for="groupinfo.groupSize" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.email">Email Address: </label>
+        <input asp-for="groupinfo.email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.phone">Phone Number: </label>
+        <input asp-for="groupinfo.phone" class="form-control" />
+    </div>
+</form>
+
+
+    <form method="post">
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-sm-float-end" asp-action="Index">Confirm Appointment</button>
+        </span>
+    </form>

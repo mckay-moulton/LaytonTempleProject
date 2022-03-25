@@ -45,5 +45,11 @@ namespace LaytonTemple.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Appointments()
+        {
+            var x = daContext.Info.ToList();
+            return View("Appointments", x);
+        }
+
     }
 }

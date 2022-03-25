@@ -55,7 +55,7 @@ namespace LaytonTemple.Migrations
 
                     b.HasKey("GroupID");
 
-                    b.ToTable("GroupInfo");
+                    b.ToTable("Info");
                 });
 
             modelBuilder.Entity("LaytonTemple.Models.ViewModels.GroupView", b =>

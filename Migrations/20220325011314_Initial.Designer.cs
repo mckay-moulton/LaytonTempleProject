@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaytonTemple.Migrations
 {
     [DbContext(typeof(ApptContext))]
-    [Migration("20220322221910_Initial")]
+    [Migration("20220325011314_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace LaytonTemple.Migrations
 
                     b.HasKey("GroupID");
 
-                    b.ToTable("GroupInfo");
+                    b.ToTable("Info");
                 });
 
             modelBuilder.Entity("LaytonTemple.Models.ViewModels.GroupView", b =>

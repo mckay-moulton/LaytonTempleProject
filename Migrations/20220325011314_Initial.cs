@@ -19,7 +19,7 @@ namespace LaytonTemple.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroupInfo",
+                name: "Info",
                 columns: table => new
                 {
                     GroupID = table.Column<int>(nullable: false)
@@ -32,7 +32,7 @@ namespace LaytonTemple.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupInfo", x => x.GroupID);
+                    table.PrimaryKey("PK_Info", x => x.GroupID);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,9 +54,9 @@ namespace LaytonTemple.Migrations
                         principalColumn: "TimeSlot",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Groups_GroupInfo_groupinfoGroupID",
+                        name: "FK_Groups_Info_groupinfoGroupID",
                         column: x => x.groupinfoGroupID,
-                        principalTable: "GroupInfo",
+                        principalTable: "Info",
                         principalColumn: "GroupID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -81,7 +81,7 @@ namespace LaytonTemple.Migrations
                 name: "AvailableTimes");
 
             migrationBuilder.DropTable(
-                name: "GroupInfo");
+                name: "Info");
         }
     }
 }

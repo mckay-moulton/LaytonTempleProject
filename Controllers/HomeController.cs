@@ -51,5 +51,30 @@ namespace LaytonTemple.Controllers
             return View("Appointments", x);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int groupid)
+        {
+            var application = daContext.Groups.Single(x => x.GroupID == groupid);
+
+            return View("Form", application);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(GroupInfo blah)
+        {
+            daContext.Update(blah);
+            daContext.SaveChanges();
+                     
+            return View("Appointments");
+        }
+
+        public IActionResult Delete(GroupInfo blah)
+        {
+            daContext.Remove(blah);
+            daContext.SaveChanges();
+
+            return View("Appointments");
+        }
+
     }
 }

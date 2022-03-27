@@ -52,20 +52,25 @@ namespace LaytonTemple.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int groupid)
+        public IActionResult Edit(GroupView gv)
         {
-            var application = daContext.Groups.Single(x => x.GroupID == groupid);
+            var application = daContext.Groups.Single(x => x.GroupID == gv.GroupID);
 
-            return View("Form", application);
+            return View("ChangeAppt", application);
         }
 
         [HttpPost]
         public IActionResult Edit(GroupInfo blah)
         {
-            daContext.Update(blah);
+            
+            daContext.Update(blah.groupName);
+            daContext.Update(blah.groupSize);
+            daContext.Update(blah.phone);
+            daContext.Update(blah.email);
+
             daContext.SaveChanges();
-                     
-            return View("Appointments");
+
+            return RedirectToAction("Appointments");
         }
 
         public IActionResult Delete(GroupInfo blah)
@@ -73,7 +78,7 @@ namespace LaytonTemple.Controllers
             daContext.Remove(blah);
             daContext.SaveChanges();
 
-            return View("Appointments");
+            return RedirectToAction("Appointments");
         }
 
     }

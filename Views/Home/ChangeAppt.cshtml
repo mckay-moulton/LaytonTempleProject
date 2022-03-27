@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model LaytonTemple.Models.ViewModels.GroupView
+
+
+<form method="post" asp-controller="Home" asp-action="Form">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @* Form for gathering Group Information *@
+
+
+
+
+    <h4>Group Information</h4>
+
+    <div class="form-group">
+        <input class="form-control" disabled value="groupinfo.groupID" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.groupName">Name: </label>
+        <input asp-for="groupinfo.groupName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.groupSize">Group Size: </label>
+        <input asp-for="groupinfo.groupSize" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.email">Email Address: </label>
+        <input asp-for="groupinfo.email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="groupinfo.phone">Phone Number: </label>
+        <input asp-for="groupinfo.phone" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success btn-sm-float-end">Confirm Edits</button>
+
+</form>

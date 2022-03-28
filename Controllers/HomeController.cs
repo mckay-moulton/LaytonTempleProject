@@ -13,7 +13,6 @@ namespace LaytonTemple.Controllers
     public class HomeController : Controller
     {
         private ApptContext daContext { get; set; }
-        private readonly ILogger<HomeController> _logger;
 
         public HomeController(ApptContext group)
         {
@@ -52,29 +51,47 @@ namespace LaytonTemple.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(GroupView gv)
+        public IActionResult Edit(int groupid)
         {
-            var application = daContext.Groups.Single(x => x.GroupID == gv.GroupID);
+            //var application = daContext.Groups.Single(x => x.GroupID == gv.GroupID);
+            var groupView = new GroupView
+            {
+                groupinfo = daContext.Info.Single(x => x.GroupID == groupid)
+            };
 
-            return View("ChangeAppt", application);
+            return View("ChangeAppt", groupView);
         }
 
         [HttpPost]
-        public IActionResult Edit(GroupInfo blah)
+        public IActionResult Edit(GroupView blah)
         {
-            
-            daContext.Update(blah.groupName);
-            daContext.Update(blah.groupSize);
-            daContext.Update(blah.phone);
-            daContext.Update(blah.email);
 
+            //daContext.Update(blah.groupName);
+            //daContext.Update(blah.groupSize);
+            //daContext.Update(blah.phone);
+            //daContext.Update(blah.email);
+            daContext.Update(blah);
             daContext.SaveChanges();
 
             return RedirectToAction("Appointments");
         }
 
-        public IActionResult Delete(GroupInfo blah)
+        public IActionResult Delete(int groupid)
         {
+            GroupInfo blah = daContext.Info.Single(x => x.GroupID == groupid);
+
+            var groups = daContext.Groups.Where(x => x.groupinfo.GroupID == groupid);
+
+            foreach (var group in groups)
+            {
+                daContext.Remove(group);
+            }
+            daContext.SaveChanges();
+
+
+            //daContext.Remove(groups);
+            //daContext.SaveChanges();
+
             daContext.Remove(blah);
             daContext.SaveChanges();
 

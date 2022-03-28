@@ -6,18 +6,17 @@
 @model LaytonTemple.Models.ViewModels.GroupView
 
 
-<form method="post" asp-controller="Home" asp-action="Form">
+<form method="post" asp-controller="Home" asp-action="Edit">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     @* Form for gathering Group Information *@
 
-
-
-
     <h4>Group Information</h4>
 
     <div class="form-group">
-        <input class="form-control" disabled value="groupinfo.groupID" />
+        @*<input class="form-control" disabled value="groupinfo.groupID" />*@
+        <input type="hidden" asp-for="groupinfo.GroupID" />
+        <input type="hidden" asp-for="groupinfo.timeslot" />
     </div>
     <div class="form-group">
         <label asp-for="groupinfo.groupName">Name: </label>
